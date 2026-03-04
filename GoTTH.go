@@ -1,10 +1,14 @@
 package main
 
 import (
-    "fmt"
-    "github.com/TheGreengo/GoTTH/get_str"
+    "net/http"
+    "github.com/a-h/templ"
 )
 
 func main() {
-    fmt.Println(get_str.GetString())
+    comp := hello("TheGreengo")
+
+    http.Handle("/", templ.Handler(comp)) 
+    
+    http.ListenAndServe(":4321", nil)
 }
